@@ -1,34 +1,56 @@
 .sources {
     display: flex;
     flex-wrap: nowrap;
+    gap: 8px;
     width: 100%;
-    height: 120px;
-    overflow: auto;
-    align-items: center;
-    font: 300 1em 'Fira Sans', sans-serif;
+    padding: 8px 2px 12px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
 }
 
 .source__item {
-    background: none;
-    border: 2px solid #30c5ff;
-    font: inherit;
-    line-height: 1;
-    margin: 0.5em;
-    padding: 1em 2em;
+    flex: 0 0 auto;
+    padding: 0.55em 1.1em;
+    border: 1px solid rgba(48, 197, 255, 0.45);
+    border-radius: 999px;
     color: #70d6ff;
-    transition: 0.25s;
+    font-size: 14px;
+    line-height: 1.2;
     cursor: pointer;
+    user-select: none;
+    scroll-snap-align: start;
+    transition:
+        color 0.2s,
+        background 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
 }
 
-.source__item:hover,
-.source__item:focus {
-    border-color: #3fcc59;
-    color: #69db7e;
-    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
-    transform: translateY(-0.25em);
+.source__item:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.source__item--active,
+.source__item--active:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+    transform: none;
 }
 
 .source__item-name {
-    font-weight: 400;
+    font-weight: 500;
     white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .sources {
+        flex-wrap: wrap;
+        max-height: 172px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 }
